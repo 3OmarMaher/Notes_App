@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.txt});
+  const CustomButton({super.key, required this.txt, this.onTap});
   final String txt;
+  final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -15,8 +16,8 @@ class CustomButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        onPressed: () {},
-        child:  Text(
+        onPressed: onTap,
+        child: Text(
           txt,
           style: const TextStyle(fontSize: 20),
         ),
