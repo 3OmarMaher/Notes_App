@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:notes_app/views/widgets/custom_app_bar.dart';
 import 'package:notes_app/views/widgets/custom_text_filed.dart';
 
-import 'widgets/custom_button.dart';
+
 
 class EditPage extends StatelessWidget {
   const EditPage({super.key});

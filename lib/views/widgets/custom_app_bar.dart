@@ -12,7 +12,7 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Text(
             appBarTitle,
-            style: TextStyle(fontSize: 28),
+            style: const TextStyle(fontSize: 28),
           ),
           const Spacer(
             flex: 1,

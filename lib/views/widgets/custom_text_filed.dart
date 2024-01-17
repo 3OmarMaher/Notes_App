@@ -12,6 +12,7 @@ class CustomTextFaild extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      
       cursorColor: Colors.tealAccent,
       maxLines: maxLines,
       decoration: InputDecoration(
@@ -22,6 +23,7 @@ class CustomTextFaild extends StatelessWidget {
         focusedBorder: customBorder(Colors.tealAccent),
       ),
     );
+  
   }
 
   OutlineInputBorder customBorder([Color]) {
