@@ -16,7 +16,7 @@ class CustomTextFaild extends StatelessWidget {
       onSaved: onSaved,
       validator: (value) {
         if (value?.isEmpty ?? true) {
-          return "Failed Required";
+          return "Filed Required";
         } else {
           return null;
         }
