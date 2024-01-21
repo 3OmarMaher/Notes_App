@@ -5,13 +5,13 @@ part 'notes_model.g.dart'; //make to generate this file
 @HiveType(typeId: 0) //give id to this hive class
 class NotesModel extends HiveObject {
   @HiveField(0) //give id to this hive filed
-  final String title;
+   String title;
   @HiveField(1) //give id to this hive filed
-  final String subtitle;
+   String subtitle;
   @HiveField(2) //give id to this hive filed
   final String date;
   @HiveField(3) //give id to this hive filed
-  final int color;
+   int color;
 
   NotesModel(
       {required this.title,

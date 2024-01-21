@@ -1,42 +1,48 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/views/edit_page.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/cubits/note_cubit/note_cubit.dart';
+import 'package:notes_app/model/notes_model.dart';
+import 'package:notes_app/views/pages/edit_page.dart';
 
-class CustomNoteCard extends StatelessWidget {
-  const CustomNoteCard({super.key});
-
+class CustomNoteItems extends StatelessWidget {
+  const CustomNoteItems({super.key, required this.note});
+  final NotesModel note;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(EditPage.id);
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => EditPage(model: note),));
       },
       child: Container(
         padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
         margin: const EdgeInsets.only(top: 20),
         decoration: BoxDecoration(
-          color: Colors.orange,
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Text(
-                'Flutter Tips',
-                style: TextStyle(
+              title: Text(
+                note.title,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 26,
                 ),
               ),
               subtitle: Text(
-                'Build your self with your self',
+                note.subtitle,
                 style: TextStyle(
                   color: Colors.black.withOpacity(0.3),
                   fontSize: 20,
                 ),
               ),
               trailing: IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  note.delete();
+                  BlocProvider.of<NotesCubit>(context).getAllNotes();
+                },
                 icon: const Icon(
                   Icons.delete,
                   size: 35,
@@ -44,11 +50,11 @@ class CustomNoteCard extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(right: 16),
+            Padding(
+              padding: const EdgeInsets.only(right: 16),
               child: Text(
-                "May 21,2023",
-                style: TextStyle(color: Colors.black),
+                note.date,
+                style: const TextStyle(color: Colors.black),
               ),
             )
           ],
