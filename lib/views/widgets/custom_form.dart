@@ -17,7 +17,6 @@ class CustomForm extends StatefulWidget {
 
 class _CustomFormState extends State<CustomForm> {
   String? title, subtitle;
-  
 
   GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
@@ -55,7 +54,10 @@ class _CustomFormState extends State<CustomForm> {
             const SizedBox(
               height: 5,
             ),
-            const ItemsColorList(),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 18),
+              child: ItemsColorList(),
+            ),
             const SizedBox(
               height: 5,
             ),

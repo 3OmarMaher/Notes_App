@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/constant/const.dart';
 import 'package:notes_app/cubits/note_cubit/note_cubit.dart';
 import 'package:notes_app/model/notes_model.dart';
 import 'package:notes_app/views/widgets/custom_app_bar.dart';
+import 'package:notes_app/views/widgets/custom_note_colors.dart';
 import 'package:notes_app/views/widgets/custom_text_filed.dart';
 
 class EditPage extends StatefulWidget {
@@ -57,8 +59,61 @@ class _EditPageState extends State<EditPage> {
           const SizedBox(
             height: 30,
           ),
+          EditNoteColors(
+            note: widget.model,
+          )
         ],
       ),
     ));
+  }
+}
+
+class EditNoteColors extends StatefulWidget {
+  const EditNoteColors({super.key, required this.note});
+
+  final NotesModel note;
+
+  @override
+  State<EditNoteColors> createState() => _EditNoteColorsState();
+}
+
+class _EditNoteColorsState extends State<EditNoteColors> {
+  late int currentIndex;
+
+//  @override
+//   void initState() {
+//     currentIndex = kColors.indexWhere((element) => element.value == widget.note.color);
+//     super.initState();
+//   }
+
+  @override
+  void initState() {
+    currentIndex = kColors.indexOf(Color(widget.note.color));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 30 * 2,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: kColors.length,
+        itemBuilder: (context, index) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 5),
+          child: GestureDetector(
+            onTap: () {
+              currentIndex = index;
+              widget.note.color = kColors[index].value;
+              setState(() {});
+            },
+            child: ItemColor(
+              colors: kColors[index],
+              isSelected: currentIndex == index,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
